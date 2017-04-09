@@ -1,0 +1,16 @@
+body{
+    background-color: #f5f8fa;
+}
+
+.banner {
+    margin-top: 50px; 
+}
+
+.container {
+    /*margin-top: 1em; */
+    width: 100%;
+}
+
+.container-form {
+    margin-top: 6em; 
+}
