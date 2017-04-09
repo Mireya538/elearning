@@ -12,15 +12,11 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-        <link rel="stylesheet" href="{{ asset('css/font-awesome-4.7.0/css/font-awesome.min.css') }}">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- Scripts -->
-        <script>
-            window.Laravel = {!! json_encode([
-                'csrfToken' => csrf_token(),
-            ]) !!};
-        </script>
+        
     </head>
     <body>
         <div>
@@ -48,7 +44,7 @@
                             @yield('nav')
                              
 
-                            <li class="dropdown">
+                            <!-- <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Courses <span class="caret"></span>
                                 </a>
 
@@ -56,7 +52,7 @@
                                     <li>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
                         </ul>
 
                         <!-- Right Side Of Navbar -->
@@ -98,5 +94,7 @@
         <!-- <script src="{{ asset('js/app.js') }}"></script> -->
         <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
         <script src="bootstrap/js/bootstrap.js"></script>
+        @yield('script')
+
     </body>
 </html>

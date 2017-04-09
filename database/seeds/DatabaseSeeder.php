@@ -14,14 +14,6 @@ class DatabaseSeeder extends Seeder
     {
     	/* Users */
         DB::table('usuario')->insert([
-            'nombre' => 'superadmin',
-            'email' => 'superadmin@gmail.com',
-            'password' => bcrypt('superadmin'),
-            'genero' => 'genero',
-            'pais' => 'pais'
-        ]);
-
-        DB::table('usuario')->insert([
             'nombre' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin'),
@@ -31,28 +23,57 @@ class DatabaseSeeder extends Seeder
 
 
         DB::table('usuario')->insert([
-            'nombre' => 'user',
-            'email' => 'user@gmail.com',
-            'password' => bcrypt('user'),
+            'nombre' => 'editor',
+            'email' => 'editor@gmail.com',
+            'password' => bcrypt('editor'),
+            'genero' => 'genero',
+            'pais' => 'pais'
+        ]);
+
+        DB::table('usuario')->insert([
+            'nombre' => 'moderador',
+            'email' => 'moderador@gmail.com',
+            'password' => bcrypt('moderador'),
             'genero' => 'genero',
             'pais' => 'pais'
         ]);
 
         /* Rols */ 
+/*Administrador:Tiene   acceso   completo   a   la   plataforma.   Puede   editar recursos  y  cursos  según  disponga.  Puede  crear  usuarios  y  roles  para  el ingreso a la plataforma.
+
+Editor:El editor puede ingresar a los cursos, y editar recursos. Sin embargo,no puede crear usuarios ni roles, ni cursos.
+
+Moderador: Este rol se encarga de hacer revisiones sobre la plataforma. No puede editar recursos, pero si puede acceder a ver cursos y revisiones de los recursos.No puede crear usuarios ni roles, ni cursos.
+
+Estudiante: El  rol  de  estudiante  permite  acceder  al  curso  en  el cual está matriculado  actualmente.  Puede  ver  los  recursos  de  su  curso,  no  los  puede editar. Es el rol para un usuario que accede a la plataforma de aprendizaje a ver sus cursos matriculados.  No puede crear usuarios ni roles, ni cursos, ni siquiera   debería   tener   acceso   de   consulta   a   algún   módulo   de   la administración.
+
+Profesor:El  rol  de  profesor  le  permite  acceder  al  curso(s)  que  está impartiendo en determinado momento. Puede ver y editar y crear los recursos de sus cursos. No puede crear usuarios ni roles, ni cursos, ni siquiera debería tener acceso de consulta a algún módulo de la administración.*/
+
         DB::table('rol')->insert([
-            'nombre' => 'superadmin',
+            'nombre' => 'Admin',
             'estado' => '0'
         ]);
 
         DB::table('rol')->insert([
-            'nombre' => 'admin',
-            'estado' => '1'
+            'nombre' => 'Editor',
+            'estado' => '0'
         ]);
 
         DB::table('rol')->insert([
-            'nombre' => 'user',
-            'estado' => '2'
+            'nombre' => 'Moderador',
+            'estado' => '0'
         ]);
+
+        DB::table('rol')->insert([
+            'nombre' => 'Estudiante',
+            'estado' => '0'
+        ]);
+
+        DB::table('rol')->insert([
+            'nombre' => 'Profesor',
+            'estado' => '0'
+        ]);
+
 
         /* Usuario Rol */ 
         DB::table('usuario_rol')->insert([

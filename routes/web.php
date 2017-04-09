@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 Route::get('/', function () {
     return view('index');
@@ -22,4 +23,6 @@ Route::get('admin', function () {
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('home', 'HomeController@index');
+Route::post('insertRole', 'HomeController@insertRole');
+Route::get('getEditRole/{id}', 'HomeController@getEditRole');
