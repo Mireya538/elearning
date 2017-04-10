@@ -15,14 +15,10 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 Route::get('/', function () {
     return view('index');
 });
-
-Route::get('curso', 'CursoController@list');
-
-Route::get('admin', function () {
-	echo "You have access!";
-});
 Auth::routes();
 
 Route::get('home', 'HomeController@index');
-Route::post('insertRole', 'HomeController@insertRole');
-Route::get('getEditRole/{id}', 'HomeController@getEditRole');
+Route::get('role', 'RoleController@index');
+Route::post('insertRole', 'RoleController@insertRole');
+Route::put('updateRole', 'RoleController@updateRole');
+Route::get('role/{id}', 'RoleController@role');

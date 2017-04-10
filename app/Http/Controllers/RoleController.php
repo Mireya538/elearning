@@ -3,106 +3,68 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+// use App\Role;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\HomeController;
-use Symfony\Component\Console\Output\ConsoleOutput;
-
 
 class RoleController extends Controller
 {
+    public $rol_id;
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->rol_id = 0;
+    }
+
+    public function getID()
+    {
+        return $this->rol_id; 
+    }
+
+    public function setID($id)
+    {
+        $this->rol_id =  $id;
+    }
+
+    /**
+     * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return HomeController::index();
+        $id =  Auth::user()->id;
+        $grant_roles = DB::table('usuario_rol')->get()->where('usuario_id', '=', $id);
+        $roles = DB::table('rol')->get();
+        $edit_roles = DB::table('rol')->select('nombre')->where('id', '=', $this->getID())->get();
+        return view('role', ['grant_roles' => $grant_roles, 'roles' => $roles, 'edit_roles' => $edit_roles]);
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255'
-        ]);
-    
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    protected function create(array $data)
+    public function insertRole(Request $data)
+    {
+        DB::table('rol')->insert(['nombre' => $data->input('name'), 'estado' => 0]);
+        return $this->index();
+    }
+
+    public function updateRole(Request $data)
+    {
+        DB::table('rol')->update(['nombre' => $data->input('name')]);
+        return $this->index();
+    }
+
+    public function role($id)
     {   
-        $output = new ConsoleOutput();
-        $output->writeln('about to create roler');
-        return User::create([
-            'nombre' => $data['name'],
-            'estado' => 0
-        ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $this->setID($id);
+        $user_id =  Auth::user()->id;
+        $grant_roles = DB::table('usuario_rol')->get()->where('usuario_id', '=', $user_id);
+        $roles = DB::table('rol')->get();
+        $edit_roles = DB::table('rol')->select('nombre')->where('id', '=', $this->getID())->get();
+        return redirect()->route('role', ['grant_roles' => $grant_roles, 'roles' => $roles, 'edit_roles' => $edit_roles]);
     }
 }

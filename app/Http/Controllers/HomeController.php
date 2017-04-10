@@ -36,25 +36,7 @@ class HomeController extends Controller
     {
         $id =  Auth::user()->id;
         $grant_roles = DB::table('usuario_rol')->get()->where('usuario_id', '=', $id);
-        $roles = DB::table('rol')->get();
-        $edit_roles = DB::table('rol')->select('nombre')->where('id', '=', 0)->get();
-        return view('home', ['grant_roles' => $grant_roles, 'roles' => $roles, 'edit_roles' => $edit_roles]);
-    }
-
-    public function insertRole(Request $data)
-    {
-        DB::table('rol')->insert(['nombre' => $data->input('name'), 'estado' => 0]);
-        return $this->index();
-    }
-
-    public function getEditRole($id)
-    {   
-        // echo $id;
-        // $edit_roles = DB::table('rol')->select('id');
-        // echo $edit_roles;
-        $edit_roles = DB::table('rol')->select('nombre')->where('id', '=', $id)->get();
-        // echo $edit_roles;
-        return redirect()->route('home', ['edit_roles' => $edit_roles]);;
+        return view('home', ['grant_roles' => $grant_roles]);
     }
 
 }
