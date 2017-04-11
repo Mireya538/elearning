@@ -61,10 +61,11 @@ class RoleController extends Controller
     public function role($id)
     {   
         $this->setID($id);
-        $user_id =  Auth::user()->id;
-        $grant_roles = DB::table('usuario_rol')->get()->where('usuario_id', '=', $user_id);
-        $roles = DB::table('rol')->get();
-        $edit_roles = DB::table('rol')->select('nombre')->where('id', '=', $this->getID())->get();
-        return redirect()->route('role', ['grant_roles' => $grant_roles, 'roles' => $roles, 'edit_roles' => $edit_roles]);
+        // $user_id =  Auth::user()->id;
+        // $grant_roles = DB::table('usuario_rol')->get()->where('usuario_id', '=', $user_id);
+        // $roles = DB::table('rol')->get();
+        // $edit_roles = DB::table('rol')->select('nombre')->where('id', '=', $this->getID())->get();
+        return $this->index();
+        // return redirect('role', ['grant_roles' => $grant_roles, 'roles' => $roles, 'edit_roles' => $edit_roles]);
     }
 }

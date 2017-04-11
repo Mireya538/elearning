@@ -91,7 +91,9 @@
 
 						                    <div class="col-md-6">
 						                        <input type="hidden" class="form-control" name="id">
-						                        <input type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                                @foreach ($edit_roles as $edit_rol) 
+						                        <input type="text" class="form-control" name="name" value="{{ $edit_rol->nombre }}" required autofocus>
+                                                @endforeach
 
 						                        @if ($errors->has('name'))
 						                            <span class="help-block">

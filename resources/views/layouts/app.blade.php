@@ -11,8 +11,10 @@
         <title>@yield('title') | E-learning</title>
 
         <!-- Styles -->
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" href="../css/style.css">
+        <!-- <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/style.css') }}" rel="stylesheet"> -->
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- Scripts -->
@@ -82,7 +84,8 @@
         <!-- Scripts -->
         <!-- <script src="{{ asset('js/app.js') }}"></script> -->
         <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
-        <script src="bootstrap/js/bootstrap.js"></script>
+        <script src="../bootstrap/js/bootstrap.js"></script>
+        <!-- <script src="/bootstrap/js/bootstrap.js"></script> -->
         @yield('script')
 
     </body>
