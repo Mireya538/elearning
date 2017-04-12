@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             'nombre' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin'),
-            'genero' => 'genero',
+            'genero' => 'Female',
             'pais' => 'pais'
         ]);
 
@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             'nombre' => 'editor',
             'email' => 'editor@gmail.com',
             'password' => bcrypt('editor'),
-            'genero' => 'genero',
+            'genero' => 'Male',
             'pais' => 'pais'
         ]);
 
@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'nombre' => 'moderador',
             'email' => 'moderador@gmail.com',
             'password' => bcrypt('moderador'),
-            'genero' => 'genero',
+            'genero' => 'Female',
             'pais' => 'pais'
         ]);
 

@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('users', ['users' => $users]);
     }
 
     /**
@@ -32,9 +39,30 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addUser(Request $request)
     {
-        //
+        $output = new ConsoleOutput();
+        $output->writeln('about to create user');
+        // $this->validate($request, [
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'gender' => 'required',
+        //     'country' => 'required'
+        // ]);
+        // User::create([
+        //     'nombre' => $data['name'],
+        //     'email' => $data['email'],
+        //     'password' => bcrypt('welcome#123'),
+        //     'genero' => $data['gender'],
+        //     'pais' => $data['country']
+        // ]);
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Setting created successfully',
+        );
+        return Response::json($response);
+        // return $this->index();
+                         // ->with('success','User created successfully');
     }
 
     /**

@@ -30,14 +30,6 @@ class User extends Authenticatable
         'password',
     ];
 
-
-    // protected function getRoles()
-    // {//select * from elearning.usuario, elearning.usuario_rol where elearning.usuario.id = elearning.usuario_rol.usuario_id;
-    //     $roles = ;
-    //     // $roles = DB::table('usuario_rol')->select('id')->where('usuario_id', '=', $this->id);
-    //     return $roles;
-    // }
-
     public static function roles()
     {
         return Role::where('usuario_id', '=', $primarykey);

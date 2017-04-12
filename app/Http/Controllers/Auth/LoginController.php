@@ -47,11 +47,6 @@ class LoginController extends Controller
 
     public function authenticate()
     {
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            // $user =  Auth::user();
-            // $this->roles = DB::table('usuario_rol')->get()->where('usuario_id', '=', $user->id);
-            // $user.roles = DB::table('usuario_rol')->select('id')->where('usuario_id', '=', $user->id);
-            return redirect();
-        }
+        
     }
 }
